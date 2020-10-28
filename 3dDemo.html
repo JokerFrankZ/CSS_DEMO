@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS3D练习</title>
+  </head>
+  <style>
+    :root,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 2000px;
+      background-color: #000;
+    }
+    .cube-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      transform-style: preserve-3d;
+      width: 300px;
+      height: 300px;
+      animation: rotate 10s infinite cubic-bezier(0.59, 0.11, 0.38, 0.88);
+      color: #fff;
+      font-size: 30px;
+    }
+    .cube {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      animation: hue 10s infinite;
+    }
+
+    .cube1 {
+      background-color: red;
+      transform: translateZ(150px);
+    }
+    .cube2 {
+      background-color: blue;
+      transform: translateZ(-150px);
+    }
+    .cube3 {
+      background-color: green;
+      transform: translateX(-150px) rotateY(-90deg);
+    }
+    .cube4 {
+      background-color: yellow;
+      transform: translateX(150px) rotateY(90deg);
+    }
+    .cube5 {
+      background-color: orchid;
+      transform: translateY(-150px) rotateX(-90deg);
+    }
+    .cube6 {
+      background-color: purple;
+      transform: translateY(150px) rotateX(90deg);
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+      50% {
+        transform: rotateY(-360deg) rotateX(360deg);
+      }
+      100% {
+        transform: rotateY(360deg) rotateX(-360deg);
+      }
+    }
+    @keyframes hue {
+      0% {
+        filter: hue-rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        filter: hue-rotate(-360deg);
+        opacity: 0.2;
+      }
+      100% {
+        filter: hue-rotate(360deg);
+        opacity: 1;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="cube-box">
+        <!-- 前 -->
+        <div class="cube cube1"></div>
+        <!-- 后 -->
+        <div class="cube cube2"></div>
+        <!-- 左 -->
+        <div class="cube cube3"></div>
+        <!-- 右 -->
+        <div class="cube cube4"></div>
+        <!-- 上 -->
+        <div class="cube cube5"></div>
+        <!-- 下 -->
+        <div class="cube cube6"></div>
+      </div>
+    </div>
+    <script>
+      const cube = document.querySelector(".cube-box");
+      const text = document.createElement("span");
+      cube.appendChild(text);
+      setInterval(() => {
+        let date = new Date();
+        text.textContent = `${date.getHours()}时${date.getMinutes()}分${date.getSeconds()}秒`;
+      }, 1000);
+    </script>
+  </body>
+</html>
